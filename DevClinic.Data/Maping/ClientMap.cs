@@ -56,6 +56,8 @@ namespace DevClinic.Data.Maping
                 .HasConversion(x => x.ToString(), x => x)
                 .HasColumnName("Plan")
                 .HasColumnType("varchar(20)");
+
+            
         }
     }
 }
