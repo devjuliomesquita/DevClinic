@@ -26,6 +26,7 @@ namespace DevClinic.Data.Repository
         public void Delete(int id)
         {
             _context.Set<TEntity>().Remove(GetById(id));
+            _context.SaveChanges();
         }
 
         public void Dispose()
