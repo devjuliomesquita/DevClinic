@@ -1,4 +1,7 @@
 using DevClinic.Data.Context;
+using DevClinic.Data.Repository;
+using DevClinic.Domain.Entities;
+using DevClinic.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +17,11 @@ builder.Services.AddSwaggerGen();
 var conectionString = builder.Configuration.GetConnectionString("Database");
 
 builder.Services.AddDbContext<DevClinic_Context>(opttions => opttions.UseSqlServer(conectionString));
+//Injeção de Dependência - Repositorios
+builder.Services.AddScoped<IRepositoryBase<Client>, Repositorybase<Client>>();
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
 
+//Injeção de Dependência - Services
 
 var app = builder.Build();
 
