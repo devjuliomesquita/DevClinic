@@ -9,6 +9,6 @@ namespace DevClinic.Domain.Entities
     public class Doctor : User
     {
         public string? Register { get; private set; }
-        public List<Speciality>? Specialities { get; private set; }
+        public virtual ICollection<Doctor_Speciality>? Specialities { get; private set; }
     }
 }

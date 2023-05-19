@@ -18,6 +18,7 @@ namespace DevClinic.Data.Context
         public DbSet<Clinic> Clinics { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Speciality> Specialities { get; set; }
+        public DbSet<Doctor_Speciality> Doctor_Speciality { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,6 +27,7 @@ namespace DevClinic.Data.Context
             modelBuilder.Entity<Client>( new ClientMap().Configure);
             modelBuilder.Entity<Doctor>(new DoctorMap().Configure);
             modelBuilder.Entity<Speciality>(new SpecialityMap().Configure);
+            modelBuilder.Entity<Doctor_Speciality>(new Doctor_SpecialityMap().Configure);
         }
     }
 }

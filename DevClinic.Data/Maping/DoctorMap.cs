@@ -51,12 +51,7 @@ namespace DevClinic.Data.Maping
                 .HasConversion(x => x.ToString(), x => x)
                 .HasColumnName("Register")
                 .HasColumnType("varchar(6)");
-            //Relacionamento entre tabelas
-            builder
-                .HasMany(x => x.Specialities)
-                .WithOne()
-                .HasForeignKey(x => x.DoctorId)
-                .OnDelete(DeleteBehavior.Restrict);
+            
         }
     }
 }
