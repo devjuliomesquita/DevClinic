@@ -9,5 +9,6 @@ namespace DevClinic.Domain.Interfaces.Repositories
 {
     public interface IDoctorRepository : IRepositoryBase<Doctor>
     {
+        Doctor GetDetails(int id);
     }
 }
