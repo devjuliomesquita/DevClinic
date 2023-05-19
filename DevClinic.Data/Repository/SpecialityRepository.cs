@@ -16,5 +16,11 @@ namespace DevClinic.Data.Repository
         {
             _context = context;
         }
+
+        public void AddSpeciality(Speciality speciality)
+        {
+            _context.Set<Speciality>().Add(speciality);
+            _context.SaveChanges();
+        }
     }
 }

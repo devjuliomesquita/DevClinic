@@ -9,5 +9,6 @@ namespace DevClinic.Domain.Interfaces.Repositories
 {
     public interface ISpecialityRepository : IRepositoryBase<Speciality>
     {
+        void AddSpeciality(Speciality speciality);
     }
 }
