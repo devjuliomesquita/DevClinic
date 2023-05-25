@@ -17,16 +17,20 @@ namespace DevClinic.Data.Repository
         {
             _context = context;
         }
-        public void Add(TEntity entity)
+
+        public async Task<TEntity> AddAsync(TEntity entity)
         {
-            _context.Set<TEntity>().Add(entity);
-            _context.SaveChanges();
+            await _context.Set<TEntity>().AddAsync(entity);
+            await _context.SaveChangesAsync();
+            return entity;
         }
 
-        public void Delete(int id)
+        public async Task<TEntity> DeleteAsync(int id)
         {
-            _context.Set<TEntity>().Remove(GetById(id));
-            _context.SaveChanges();
+            var entity = await _context.Set<TEntity>().FindAsync(id);
+            var entityRemove = _context.Remove(entity);
+            await _context.SaveChangesAsync();
+            return entityRemove.Entity;
         }
 
         public void Dispose()
@@ -34,22 +38,22 @@ namespace DevClinic.Data.Repository
             _context?.Dispose();
         }
 
-        public IList<TEntity> GetAll()
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return
-                _context.Set<TEntity>().ToList();
+            return await _context.Set<TEntity>().AsNoTracking().ToListAsync();
         }
 
-        public TEntity GetById(int id)
+        public async Task<TEntity> GetByIdAsync(int id)
         {
-            return
-                _context.Set<TEntity>().Find(id);
+            return await _context.Set<TEntity>().FindAsync(id);
+            
         }
 
-        public void Update(TEntity entity)
+        public async Task<TEntity> UpdateAsync(TEntity entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+            return entity;
         }
     }
 }

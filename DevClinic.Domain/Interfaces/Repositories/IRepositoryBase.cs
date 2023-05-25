@@ -9,10 +9,10 @@ namespace DevClinic.Domain.Interfaces.Repositories
 {
     public interface IRepositoryBase<TEntity> : IDisposable where TEntity : BaseEntity
     {
-        void Add(TEntity entity);
-        void Update(TEntity entity);
-        void Delete(int id);
-        IList<TEntity> GetAll();
-        TEntity GetById(int id);
+        Task<TEntity> Add(TEntity entity);
+        Task<TEntity> Update(TEntity entity);
+        Task<TEntity> Delete(int id);
+        Task<IEnumerable<TEntity>> GetAll();
+        Task<TEntity> GetById(int id);
     }
 }
