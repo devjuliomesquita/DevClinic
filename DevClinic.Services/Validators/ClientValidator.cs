@@ -33,7 +33,8 @@ namespace DevClinic.Services.Validators
                 .MinimumLength(8).WithMessage("Título deve conter no mínimo 8 caractes.");
             RuleFor(jv => jv.Sexo)
                 .NotEmpty().WithMessage("Por favor entre com a letra F ou M.")
-                .NotNull().WithMessage("Por favor entre com a letra F ou M.");
+                .NotNull().WithMessage("Por favor entre com a letra F ou M.")
+                .Must(IsMorF).WithMessage("Por favor entre com a letra F ou M.");
             RuleFor(jv => jv.Register)
                 .NotEmpty().WithMessage("Por favor entre com seu número de registro.")
                 .NotNull().WithMessage("Por favor entre com seu número de registro.")
@@ -45,6 +46,11 @@ namespace DevClinic.Services.Validators
                 .MinimumLength(3).WithMessage("Título deve conter no mínimo 3 caractes.");
 
 
+        }
+
+        private bool IsMorF(char sexo)
+        {
+            return sexo == 'M' || sexo == 'F';
         }
     }
 }

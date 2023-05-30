@@ -5,13 +5,22 @@ using DevClinic.Domain.Entities;
 using DevClinic.Domain.Interfaces.Repositories;
 using DevClinic.Domain.Interfaces.Services;
 using DevClinic.Services.Services;
+using DevClinic.Services.Validators;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+//Adicionando o fluente validation na controller
+builder.Services.AddControllers()
+    .AddFluentValidation(v =>
+    {
+        v.RegisterValidatorsFromAssemblyContaining<ClientValidator>();
+        v.ValidatorOptions.LanguageManager.Culture = new CultureInfo("pt-BR");
+    });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -21,11 +30,11 @@ var conectionString = builder.Configuration.GetConnectionString("Database");
 
 builder.Services.AddDbContext<DevClinic_Context>(opttions => opttions.UseSqlServer(conectionString));
 //Injeção de Dependência - Repositorios
-builder.Services.AddScoped<IRepositoryBase<Client>, Repositorybase<Client>>();
+builder.Services.AddScoped(typeof(IRepositoryBase<>), typeof(Repositorybase<>));
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 
 //Injeção de Dependência - Services
-builder.Services.AddScoped<IServiceBase<Client>, ServiceBase<Client>>();
+builder.Services.AddScoped(typeof(IServiceBase<>), typeof(ServiceBase<>));
 builder.Services.AddScoped<IClientService, ClientService>();
 
 //Injeção de Dependência - AutoMapper

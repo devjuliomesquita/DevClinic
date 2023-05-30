@@ -1,5 +1,6 @@
 ﻿using DevClinic.API.DTO.InputModels.Client;
 using DevClinic.API.DTO.ViewModels.Client;
+using DevClinic.Domain.Entities;
 using DevClinic.Domain.Interfaces.Services;
 using DevClinic.Services.Validators;
 using Microsoft.AspNetCore.Http;
@@ -17,65 +18,39 @@ namespace DevClinic.API.Controllers
             _clientService = clientService;
         }
         [HttpGet]
-        public IActionResult GetAll() 
+        public async Task<IActionResult> GetAll() 
         {
             return
-                Execute(() => _clientService.GetAll<Client_ViewModel>());
+                Ok(await _clientService.GetAllAsync());
         }
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            if (id == 0) return NotFound();
             return
-                Execute(() => _clientService.GetById<ClientStandard_ViewModel>(id));
-        }
-        [HttpGet("{id}/Details")]
-        public IActionResult GetDetails(int id)
-        {
-            if (id == 0) return NotFound();
-            return
-                Execute(() => _clientService.GetDetails<ClientDetails_ViewModel>(id));
+                Ok(await _clientService.GetByIdAsync(id));
         }
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == 0) return NotFound();
-            Execute(() =>
-            {
-                _clientService.Delete(id);
-                return true;
-            });
-            return new ContentResult();
+            await _clientService.DeleteAsync(id);
+            return NoContent();
         }
         [HttpPost]
-        public IActionResult Create([FromBody] ClientCreate_InputModel inputModel)
+        public async Task<IActionResult> Create( Client inputModel)
         {
-            if (inputModel == null) return NoContent();
+            var clientNew = await _clientService.AddAsync(inputModel);
             return
-                Execute(() => _clientService.Add<ClientCreate_InputModel, Client_ViewModel, ClientValidator>(inputModel));
+                CreatedAtAction(nameof(GetById), new {id = inputModel.Id}, inputModel);
+                
         }
         [HttpPut]
-        public IActionResult Update([FromBody] ClientUpdate_InputModel inputModel)
+        public async Task<IActionResult> Update( Client inputModel)
         {
-            if (inputModel == null) return NoContent();
+            var clientUpdate = await _clientService.UpdateAsync(inputModel);
+            if (clientUpdate == null) return NotFound();
             return
-                Execute(() => _clientService.Update<ClientUpdate_InputModel, Client_ViewModel, ClientValidator>(inputModel));
+                Ok(clientUpdate);
         }
-        
 
-        //Criando o Método de execução
-        private IActionResult Execute(Func<object> func)
-        {
-            try
-            {
-                var result = func();
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-
-                return BadRequest(ex.Message);
-            }
-        }
     }
 }
