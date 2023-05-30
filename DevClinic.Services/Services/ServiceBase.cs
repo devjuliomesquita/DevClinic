@@ -2,12 +2,7 @@
 using DevClinic.Domain.Entities;
 using DevClinic.Domain.Interfaces.Repositories;
 using DevClinic.Domain.Interfaces.Services;
-using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DevClinic.Services.Services
 {
@@ -20,54 +15,30 @@ namespace DevClinic.Services.Services
             _mapper = mapper;
             _repositoryBase = repositoryBase;
         }
-        public TOutputModel Add<TInputModel, TOutputModel, TValidator>(TInputModel inputModel)
-            where TInputModel : class
-            where TOutputModel : class
-            where TValidator : AbstractValidator<TEntity>
+
+        public async Task<TEntity> AddAsync(TEntity entity)
         {
-            TEntity entity = _mapper.Map<TEntity>(inputModel);
-            Validate(entity, Activator.CreateInstance<TValidator>()); // validando os dados
-            _repositoryBase.Add(entity);
-            TOutputModel outputModel = _mapper.Map<TOutputModel>(entity);
-            return outputModel;
+            return await _repositoryBase.AddAsync(entity);
         }
 
-        public void Delete(int id) => _repositoryBase.Delete(id);
-
-        public IEnumerable<TOutputModel> GetAll<TOutputModel>() where TOutputModel : class
+        public async Task DeleteAsync(int id)
         {
-            var entities = _repositoryBase.GetAll().ToList();
-            var outputModel = entities.Select(e => _mapper.Map<TOutputModel>(e));
-            return outputModel;
+            await _repositoryBase.DeleteAsync(id);
         }
 
-        public TOutputModel GetById<TOutputModel>(int id) where TOutputModel : class
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            var entity = _repositoryBase.GetById(id);
-            TOutputModel outputModel = _mapper.Map<TOutputModel>(entity);
-            return outputModel;
+            return await _repositoryBase.GetAllAsync();
         }
 
-        public TOutputModel Update<TInputModel, TOutputModel, TValidator>(TInputModel inputModel)
-            where TInputModel : class
-            where TOutputModel : class
-            where TValidator : AbstractValidator<TEntity>
+        public async Task<TEntity> GetByIdAsync(int id)
         {
-            TEntity entity = _mapper.Map<TEntity>(inputModel);
-            Validate(entity, Activator.CreateInstance<TValidator>());
-            _repositoryBase.Update(entity);
-            TOutputModel outputModel = _mapper.Map<TOutputModel>(entity);
-            return outputModel;
+            return await _repositoryBase.GetByIdAsync(id);
         }
 
-        //Validação
-        private void Validate(TEntity entity, AbstractValidator<TEntity> validator)
+        public async Task<TEntity> UpdateAsync(TEntity entity)
         {
-            if (entity == null)
-            {
-                throw new Exception("Registro não encontrado.");
-            }
-            validator.ValidateAndThrow(entity);
+            return await _repositoryBase.UpdateAsync(entity);
         }
     }
 }

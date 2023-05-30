@@ -2,11 +2,7 @@
 using DevClinic.Domain.Entities;
 using DevClinic.Domain.Interfaces.Repositories;
 using DevClinic.Domain.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DevClinic.Services.Services
 {
@@ -25,11 +21,5 @@ namespace DevClinic.Services.Services
             _clientRepository = clientRepository;
         }
 
-        public TOutputModel GetDetails<TOutputModel>(int id) where TOutputModel : class
-        {
-            var entity = _clientRepository.GetDetails(id);
-            TOutputModel outputModel = _mapper.Map<TOutputModel>(entity);
-            return outputModel;
-        }
     }
 }
