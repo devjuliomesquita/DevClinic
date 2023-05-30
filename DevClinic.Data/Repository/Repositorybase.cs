@@ -25,12 +25,11 @@ namespace DevClinic.Data.Repository
             return entity;
         }
 
-        public async Task<TEntity> DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            var entity = await _context.Set<TEntity>().FindAsync(id);
-            var entityRemove = _context.Remove(entity);
+            var entityConsultado = await _context.Set<TEntity>().FindAsync(id);
+            _context.Set<TEntity>().Remove(entityConsultado);
             await _context.SaveChangesAsync();
-            return entityRemove.Entity;
         }
 
         public void Dispose()
@@ -51,9 +50,15 @@ namespace DevClinic.Data.Repository
 
         public async Task<TEntity> UpdateAsync(TEntity entity)
         {
-            _context.Entry(entity).State = EntityState.Modified;
+            var entityConsultado = await _context.Set<TEntity>().FindAsync(entity.Id);
+            if (entityConsultado == null)
+            {
+                return null;
+            }
+
+            _context.Entry(entityConsultado).CurrentValues.SetValues(entity);
             await _context.SaveChangesAsync();
-            return entity;
+            return entityConsultado;
         }
     }
 }

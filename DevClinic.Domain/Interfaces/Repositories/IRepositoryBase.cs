@@ -1,9 +1,5 @@
 ﻿using DevClinic.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DevClinic.Domain.Interfaces.Repositories
 {
@@ -11,7 +7,7 @@ namespace DevClinic.Domain.Interfaces.Repositories
     {
         Task<TEntity> AddAsync(TEntity entity);
         Task<TEntity> UpdateAsync(TEntity entity);
-        Task<TEntity> DeleteAsync(int id);
+        Task DeleteAsync(int id);
         Task<IEnumerable<TEntity>> GetAllAsync();
         Task<TEntity> GetByIdAsync(int id);
     }
