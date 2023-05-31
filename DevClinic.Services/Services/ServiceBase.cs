@@ -16,8 +16,9 @@ namespace DevClinic.Services.Services
             _repositoryBase = repositoryBase;
         }
 
-        public async Task<TEntity> AddAsync(TEntity entity)
+        public async Task<TEntity> AddAsync<TInputModel>(TInputModel inputModel) where TInputModel : class
         {
+            var entity = _mapper.Map<TEntity>(inputModel);
             return await _repositoryBase.AddAsync(entity);
         }
 
@@ -36,8 +37,9 @@ namespace DevClinic.Services.Services
             return await _repositoryBase.GetByIdAsync(id);
         }
 
-        public async Task<TEntity> UpdateAsync(TEntity entity)
+        public async Task<TEntity> UpdateAsync<TInputModel>(TInputModel inputModel) where TInputModel : class
         {
+            var entity = _mapper.Map<TEntity>(inputModel);
             return await _repositoryBase.UpdateAsync(entity);
         }
     }

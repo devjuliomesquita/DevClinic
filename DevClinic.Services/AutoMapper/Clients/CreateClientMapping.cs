@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DevClinic.Domain.Entities;
-using DevClinic.Services.DTO.Client;
+using DevClinic.Services.DTO.Clients;
 
 
 namespace DevClinic.Services.AutoMapper.Clients

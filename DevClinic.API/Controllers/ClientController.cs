@@ -1,5 +1,6 @@
 ﻿
 using DevClinic.Domain.Interfaces.Services;
+using DevClinic.Services.DTO.Clients;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevClinic.API.Controllers

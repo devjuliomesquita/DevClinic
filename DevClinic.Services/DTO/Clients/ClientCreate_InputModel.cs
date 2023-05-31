@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevClinic.Services.DTO.Client
+namespace DevClinic.Services.DTO.Clients
 {
     public class ClientCreate_InputModel
     {
