@@ -1,9 +1,5 @@
-﻿using DevClinic.API.DTO.InputModels.Client;
-using DevClinic.API.DTO.ViewModels.Client;
-using DevClinic.Domain.Entities;
+﻿
 using DevClinic.Domain.Interfaces.Services;
-using DevClinic.Services.Validators;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevClinic.API.Controllers
@@ -36,15 +32,15 @@ namespace DevClinic.API.Controllers
             return NoContent();
         }
         [HttpPost]
-        public async Task<IActionResult> Create( Client inputModel)
+        public async Task<IActionResult> Create( ClientCreate_InputModel inputModel)
         {
             var clientNew = await _clientService.AddAsync(inputModel);
             return
-                CreatedAtAction(nameof(GetById), new {id = inputModel.Id}, inputModel);
+                CreatedAtAction(nameof(GetById), new {id = clientNew.Id}, clientNew);
                 
         }
         [HttpPut]
-        public async Task<IActionResult> Update( Client inputModel)
+        public async Task<IActionResult> Update( ClientUpdate_InputModel inputModel)
         {
             var clientUpdate = await _clientService.UpdateAsync(inputModel);
             if (clientUpdate == null) return NotFound();

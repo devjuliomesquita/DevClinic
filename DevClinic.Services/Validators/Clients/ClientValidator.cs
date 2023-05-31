@@ -1,4 +1,5 @@
 ﻿using DevClinic.Domain.Entities;
+using DevClinic.Services.DTO.Client;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -6,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevClinic.Services.Validators
+namespace DevClinic.Services.Validators.Clients
 {
-    public class ClientValidator : AbstractValidator<Client>
+    public class ClientValidator : AbstractValidator<ClientCreate_InputModel>
     {
         public ClientValidator()
         {
@@ -35,10 +36,6 @@ namespace DevClinic.Services.Validators
                 .NotEmpty().WithMessage("Por favor entre com a letra F ou M.")
                 .NotNull().WithMessage("Por favor entre com a letra F ou M.")
                 .Must(IsMorF).WithMessage("Por favor entre com a letra F ou M.");
-            RuleFor(jv => jv.Register)
-                .NotEmpty().WithMessage("Por favor entre com seu número de registro.")
-                .NotNull().WithMessage("Por favor entre com seu número de registro.")
-                .MaximumLength(6).WithMessage("Título pode conter no máximo 6 caracteres.");
             RuleFor(jv => jv.Plan)
                 .NotEmpty().WithMessage("Por favor entre com o seu plano.")
                 .NotNull().WithMessage("Por favor entre com o seu plano.")

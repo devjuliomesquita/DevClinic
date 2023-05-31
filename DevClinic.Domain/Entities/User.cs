@@ -15,5 +15,6 @@ namespace DevClinic.Domain.Entities
         public char Sexo { get; private set; }
         public bool Active { get; private set; }
         public DateTime CreatedAt { get; private set; }
+        public DateTime UpdatedAt { get; private set; }
     }
 }

@@ -1,8 +1,13 @@
-﻿namespace DevClinic.API.DTO.InputModels.Doctor
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DevClinic.Services.DTO.Client
 {
-    public class DoctorUpdate_InputModel
+    public class ClientCreate_InputModel
     {
-        public int Id { get; set; }
         public string? Name { get; set; }
         public string? CPF { get; set; }
         public string? Email { get; set; }

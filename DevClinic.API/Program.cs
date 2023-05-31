@@ -1,11 +1,13 @@
-using DevClinic.API.AutoMapper;
+
 using DevClinic.Data.Context;
 using DevClinic.Data.Repository;
 using DevClinic.Domain.Entities;
 using DevClinic.Domain.Interfaces.Repositories;
 using DevClinic.Domain.Interfaces.Services;
+using DevClinic.Services.AutoMapper.Clients;
 using DevClinic.Services.Services;
-using DevClinic.Services.Validators;
+
+using DevClinic.Services.Validators.Clients;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
@@ -19,6 +21,7 @@ builder.Services.AddControllers()
     .AddFluentValidation(v =>
     {
         v.RegisterValidatorsFromAssemblyContaining<ClientValidator>();
+        v.RegisterValidatorsFromAssemblyContaining<UpdateClientValidator>();
         v.ValidatorOptions.LanguageManager.Culture = new CultureInfo("pt-BR");
     });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -38,7 +41,7 @@ builder.Services.AddScoped(typeof(IServiceBase<>), typeof(ServiceBase<>));
 builder.Services.AddScoped<IClientService, ClientService>();
 
 //Injeção de Dependência - AutoMapper
-builder.Services.AddAutoMapper(typeof(DevClinic_Mapper));
+builder.Services.AddAutoMapper(typeof(CreateClientMapping), typeof(UpdateClientMapping));
 
 var app = builder.Build();
 

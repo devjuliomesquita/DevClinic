@@ -49,7 +49,7 @@ namespace DevClinic.Data.Maping
                 .IsRequired()
                 .HasConversion(x => x.ToString(), x => x)
                 .HasColumnName("Register")
-                .HasColumnType("varchar(6)");
+                .HasColumnType("varchar(50)");
             builder
                 .Property(x => x.Plan)
                 .IsRequired()
