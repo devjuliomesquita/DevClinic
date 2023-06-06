@@ -1,4 +1,5 @@
 ﻿using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Swagger;
 using System.Reflection;
 
 namespace DevClinic.API.Configurations
@@ -28,7 +29,7 @@ namespace DevClinic.API.Configurations
                         },
                         TermsOfService = new Uri("https://github.com/devjuliomesquita")
                     }) ;
-
+                s.AddFluentValidationRulesScoped();
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 s.IncludeXmlComments(xmlPath);
