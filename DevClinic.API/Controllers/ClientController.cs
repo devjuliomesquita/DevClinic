@@ -1,6 +1,6 @@
 ﻿
-using DevClinic.Domain.Interfaces.Services;
-using DevClinic.Services.DTO.Clients;
+using DevClinic.Domain.DTO.Clients;
+using DevClinic.Manager.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevClinic.API.Controllers
@@ -33,7 +33,7 @@ namespace DevClinic.API.Controllers
             return NoContent();
         }
         [HttpPost]
-        public async Task<IActionResult> Create( ClientCreate_InputModel inputModel)
+        public async Task<IActionResult> Create(CreateClient_InputModel inputModel)
         {
             var clientNew = await _clientService.AddAsync(inputModel);
             return
@@ -41,7 +41,7 @@ namespace DevClinic.API.Controllers
                 
         }
         [HttpPut]
-        public async Task<IActionResult> Update( ClientUpdate_InputModel inputModel)
+        public async Task<IActionResult> Update(UpdateClient_InputModel inputModel)
         {
             var clientUpdate = await _clientService.UpdateAsync(inputModel);
             if (clientUpdate == null) return NotFound();

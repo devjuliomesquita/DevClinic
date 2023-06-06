@@ -1,13 +1,11 @@
 
 using DevClinic.Data.Context;
 using DevClinic.Data.Repository;
-using DevClinic.Domain.Entities;
-using DevClinic.Domain.Interfaces.Repositories;
-using DevClinic.Domain.Interfaces.Services;
-using DevClinic.Services.AutoMapper.Clients;
-using DevClinic.Services.Services;
-
-using DevClinic.Services.Validators.Clients;
+using DevClinic.Manager.Implementation;
+using DevClinic.Manager.Interfaces.Repository;
+using DevClinic.Manager.Interfaces.Services;
+using DevClinic.Manager.Mappings.Clients;
+using DevClinic.Manager.Validator.Clients;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
@@ -20,8 +18,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers()
     .AddFluentValidation(v =>
     {
-        v.RegisterValidatorsFromAssemblyContaining<ClientValidator>();
-        v.RegisterValidatorsFromAssemblyContaining<UpdateClientValidator>();
+        v.RegisterValidatorsFromAssemblyContaining<CreateClient_Validator>();
+        v.RegisterValidatorsFromAssemblyContaining<UpdateClient_Validator>();
         v.ValidatorOptions.LanguageManager.Culture = new CultureInfo("pt-BR");
     });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -41,7 +39,7 @@ builder.Services.AddScoped(typeof(IServiceBase<>), typeof(ServiceBase<>));
 builder.Services.AddScoped<IClientService, ClientService>();
 
 //Injeção de Dependência - AutoMapper
-builder.Services.AddAutoMapper(typeof(CreateClientMapping), typeof(UpdateClientMapping));
+builder.Services.AddAutoMapper(typeof(CreateClient_Mapping), typeof(UpdateClient_Mapping));
 
 var app = builder.Build();
 
