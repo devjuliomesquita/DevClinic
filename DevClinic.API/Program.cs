@@ -1,15 +1,8 @@
 
 using DevClinic.API.Configurations;
 using DevClinic.Data.Context;
-using DevClinic.Data.Repository;
-using DevClinic.Manager.Implementation;
-using DevClinic.Manager.Interfaces.Repository;
-using DevClinic.Manager.Interfaces.Services;
-using DevClinic.Manager.Mappings.Clients;
-using DevClinic.Manager.Validator.Clients;
-using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
-using System.Globalization;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +19,7 @@ var conectionString = builder.Configuration.GetConnectionString("Database");
 builder.Services.AddDbContext<DevClinic_Context>(opttions => opttions.UseSqlServer(conectionString));
 builder.Services.AddDependencyInjectionConfiguration();
 builder.Services.AddAutoMapperConfiguration();
+builder.Services.AddSwaggerConfiguration();
 
 
 var app = builder.Build();
