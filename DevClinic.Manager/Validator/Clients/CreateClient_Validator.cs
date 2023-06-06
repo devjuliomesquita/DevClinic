@@ -1,17 +1,13 @@
-﻿using DevClinic.Domain.Entities;
-using DevClinic.Services.DTO.Clients;
-using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
-namespace DevClinic.Services.Validators.Clients
+using DevClinic.Domain.DTO.Clients;
+using FluentValidation;
+
+namespace DevClinic.Manager.Validator.Clients
 {
-    public class ClientValidator : AbstractValidator<ClientCreate_InputModel>
+    public class CreateClient_Validator : AbstractValidator<CreateClient_InputModel>
     {
-        public ClientValidator()
+        public CreateClient_Validator()
         {
             RuleFor(jv => jv.Name)
                 .NotEmpty().WithMessage("Por favor entre com um Nome.")

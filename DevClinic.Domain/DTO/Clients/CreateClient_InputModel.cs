@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
-namespace DevClinic.Services.DTO.Clients
+namespace DevClinic.Domain.DTO.Clients
 {
-    public class ClientCreate_InputModel
+    public class CreateClient_InputModel
     {
         public string? Name { get; set; }
         public string? CPF { get; set; }

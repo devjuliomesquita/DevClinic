@@ -8,7 +8,7 @@ namespace DevClinic.Manager.Mappings.Clients
     {
         public CreateClientMapping()
         {
-            CreateMap<ClientCreate_InputModel, Client>()
+            CreateMap<CreateClient_InputModel, Client>()
                 .ForMember(c => c.CreatedAt, c => c.MapFrom(c => DateTime.Now.Date))
                 .ForMember(c => c.Active, c => c.MapFrom(c => true));
 

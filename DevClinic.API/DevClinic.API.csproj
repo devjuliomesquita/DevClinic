@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DevClinic.Data\DevClinic.Data.csproj" />
-    <ProjectReference Include="..\DevClinic.Services\DevClinic.Services.csproj" />
   </ItemGroup>
 
 </Project>
