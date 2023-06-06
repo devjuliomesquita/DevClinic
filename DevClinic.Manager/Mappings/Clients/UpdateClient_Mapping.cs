@@ -4,9 +4,9 @@ using DevClinic.Domain.Entities;
 
 namespace DevClinic.Manager.Mappings.Clients
 {
-    public class UpdateClientMapping : Profile
+    public class UpdateClient_Mapping : Profile
     {
-        public UpdateClientMapping()
+        public UpdateClient_Mapping()
         {
             CreateMap<UpdateClient_InputModel, Client>()
                 .ForMember(c => c.UpdatedAt, c => c.MapFrom(c => DateTime.Now));

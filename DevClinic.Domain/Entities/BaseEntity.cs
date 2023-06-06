@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevClinic.Domain.Entities
 {
-    public class BaseEntity
+    public abstract class BaseEntity
     {
         public virtual int Id { get; private set; }
     }

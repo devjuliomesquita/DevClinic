@@ -32,6 +32,15 @@ namespace DevClinic.Manager.Validator.Clients
                 .NotEmpty().WithMessage("Por favor entre com a letra F ou M.")
                 .NotNull().WithMessage("Por favor entre com a letra F ou M.")
                 .Must(IsMorF).WithMessage("Por favor entre com a letra F ou M.");
+            RuleFor(jv => jv.BirthDate)
+                .NotEmpty().WithMessage("Por favor entre com uma data.")
+                .NotNull().WithMessage("Por favor entre com data.")
+                .LessThan(DateTime.Now)
+                .GreaterThan(DateTime.Now.AddYears(-130));
+            RuleFor(jv => jv.Register)
+                .NotEmpty().WithMessage("Por favor entre com a letra F ou M.")
+                .NotNull().WithMessage("Por favor entre com a letra F ou M.")
+                .MaximumLength(6).WithMessage("Registro pode conter no máximo 6 caracteres.");
             RuleFor(jv => jv.Plan)
                 .NotEmpty().WithMessage("Por favor entre com o seu plano.")
                 .NotNull().WithMessage("Por favor entre com o seu plano.")

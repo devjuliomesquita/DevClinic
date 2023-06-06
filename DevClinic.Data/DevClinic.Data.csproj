@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DevClinic.Domain\DevClinic.Domain.csproj" />
+    <ProjectReference Include="..\DevClinic.Manager\DevClinic.Manager.csproj" />
   </ItemGroup>
 
 </Project>

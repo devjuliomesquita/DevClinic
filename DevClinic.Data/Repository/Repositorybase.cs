@@ -1,6 +1,6 @@
 ﻿using DevClinic.Data.Context;
 using DevClinic.Domain.Entities;
-using DevClinic.Domain.Interfaces.Repositories;
+using DevClinic.Manager.Interfaces.Repository;
 using Microsoft.EntityFrameworkCore;
 
 
