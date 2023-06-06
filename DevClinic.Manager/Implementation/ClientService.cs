@@ -1,4 +1,5 @@
-﻿using DevClinic.Domain.Entities;
+﻿using AutoMapper;
+using DevClinic.Domain.Entities;
 using DevClinic.Manager.Interfaces.Repository;
 using DevClinic.Manager.Interfaces.Services;
 
