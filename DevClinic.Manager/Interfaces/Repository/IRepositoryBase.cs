@@ -1,7 +1,6 @@
 ﻿using DevClinic.Domain.Entities;
 
-
-namespace DevClinic.Domain.Interfaces.Repositories
+namespace DevClinic.Manager.Interfaces.Repository
 {
     public interface IRepositoryBase<TEntity> : IDisposable where TEntity : BaseEntity
     {

@@ -1,7 +1,6 @@
 ﻿using DevClinic.Domain.Entities;
 
-
-namespace DevClinic.Domain.Interfaces.Services
+namespace DevClinic.Manager.Interfaces.Services
 {
     public interface IClientService : IServiceBase<Client>
     {

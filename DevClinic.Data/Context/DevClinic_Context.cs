@@ -25,9 +25,6 @@ namespace DevClinic.Data.Context
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Client>( new ClientMap().Configure);
-            modelBuilder.Entity<Doctor>(new DoctorMap().Configure);
-            modelBuilder.Entity<Speciality>(new SpecialityMap().Configure);
-            modelBuilder.Entity<Doctor_Speciality>(new Doctor_SpecialityMap().Configure);
         }
     }
 }
