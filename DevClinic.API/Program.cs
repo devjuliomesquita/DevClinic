@@ -15,11 +15,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //String de conexão
-var conectionString = builder.Configuration.GetConnectionString("Database");
-builder.Services.AddDbContext<DevClinic_Context>(opttions => opttions.UseSqlServer(conectionString));
+//var conectionString = builder.Configuration.GetConnectionString("Database");
+//builder.Services.AddDbContext<DevClinic_Context>(opttions => opttions.UseSqlServer(conectionString));
 builder.Services.AddDependencyInjectionConfiguration();
 builder.Services.AddAutoMapperConfiguration();
 builder.Services.AddSwaggerConfiguration();
+builder.Services.AddDatabaseConfigutation(builder.Configuration);
 
 
 var app = builder.Build();
@@ -30,6 +31,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseDatabaseConfiguration();
 
 app.UseHttpsRedirection();
 

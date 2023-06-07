@@ -37,5 +37,15 @@ namespace DevClinic.API.Configurations
                 s.IncludeXmlComments(xmlPath);
             });
         }
+
+        public static void UseSwaggerConfiguration(this IApplicationBuilder app)
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI(s =>
+            {
+                s.RoutePrefix = string.Empty;
+                s.SwaggerEndpoint("./swagger/v1/swagger.json", "CL V1");
+            });
+        }
     }
 }
