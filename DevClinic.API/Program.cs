@@ -14,9 +14,7 @@ builder.Services.AddFluentValidationConfiguration();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//String de conexão
-//var conectionString = builder.Configuration.GetConnectionString("Database");
-//builder.Services.AddDbContext<DevClinic_Context>(opttions => opttions.UseSqlServer(conectionString));
+
 builder.Services.AddDependencyInjectionConfiguration();
 builder.Services.AddAutoMapperConfiguration();
 builder.Services.AddSwaggerConfiguration();
