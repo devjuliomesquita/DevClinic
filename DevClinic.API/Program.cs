@@ -5,10 +5,15 @@ using Serilog;
 var builder = WebApplication.CreateBuilder(args);
 
 //LOG E SERILOG
+string environmentDev = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+var config = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json")
+    .AddJsonFile($"appsettings.{environmentDev}.json")
+    .Build();
+
 var logger = new LoggerConfiguration()
-    .Enrich.FromLogContext()
-    .WriteTo.Async(l => l.Console())
-    .WriteTo.Async(l => l.File("Doc/log.txt", fileSizeLimitBytes: 100000, rollOnFileSizeLimit: true, rollingInterval: RollingInterval.Day))
+    .ReadFrom.Configuration(config)
     .CreateLogger();
 builder.Services.AddSerilog(logger);
 
