@@ -1,10 +1,31 @@
 
 using DevClinic.API.Configurations;
-using DevClinic.Data.Context;
-using Microsoft.EntityFrameworkCore;
-
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//LOG E SERILOG
+var logger = new LoggerConfiguration()
+    .Enrich.FromLogContext()
+    .WriteTo.Async(l => l.Console())
+    .WriteTo.Async(l => l.File("Doc/log.txt", fileSizeLimitBytes: 100000, rollOnFileSizeLimit: true, rollingInterval: RollingInterval.Day))
+    .CreateLogger();
+builder.Services.AddSerilog(logger);
+
+try
+{
+    Log.Information("API iniciada.");
+}
+catch (Exception ex)
+{
+
+    Log.Fatal(ex, "Erro Demoníaco.");
+    throw;
+}
+finally
+{
+    Log.CloseAndFlush();
+}
 
 // Add services to the container.
 
