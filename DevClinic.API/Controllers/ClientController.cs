@@ -3,6 +3,7 @@ using DevClinic.Domain.DTO.Clients;
 using DevClinic.Domain.Entities;
 using DevClinic.Manager.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
+using SerilogTimings;
 
 namespace DevClinic.API.Controllers
 {
@@ -62,10 +63,15 @@ namespace DevClinic.API.Controllers
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Create(CreateClient_InputModel inputModel)
         {
-            var clientNew = await _clientService.AddAsync(inputModel);
+            Client clientNew;
+            using (Operation.Time("Tempo de adição de um novo cliente."))
+            {
+                clientNew = await _clientService.AddAsync(inputModel);
+            }
             return
-                CreatedAtAction(nameof(GetById), new {id = clientNew.Id}, clientNew);
-                
+                    CreatedAtAction(nameof(GetById), new { id = clientNew.Id }, clientNew);
+
+
         }
         /// <summary>
         /// Atualizãr os dados cadastratis de um novo cliente.
