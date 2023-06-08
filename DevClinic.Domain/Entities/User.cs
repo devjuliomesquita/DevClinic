@@ -17,5 +17,6 @@ namespace DevClinic.Domain.Entities
         public DateTime BirthDate { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime UpdatedAt { get; private set; }
+        public Address Address { get; private set; }
     }
 }
