@@ -24,6 +24,7 @@ namespace DevClinic.API.Controllers
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAll() 
         {
+            throw new Exception("Erro de teste");
             return
                 Ok(await _clientService.GetAllAsync());
         }

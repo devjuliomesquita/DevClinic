@@ -10,7 +10,7 @@ namespace DevClinic.API.Configurations
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
-                .AddJsonFile($"appsettings.{environmentDev}.json")
+                .AddJsonFile($"appsettings.{environmentDev}.json", optional: true)
                 .Build();
 
             var logger = new LoggerConfiguration()
