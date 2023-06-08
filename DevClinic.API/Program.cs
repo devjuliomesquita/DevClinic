@@ -4,33 +4,34 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddLogSerilogConfiguration();
 //LOG E SERILOG
-string environmentDev = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-var config = new ConfigurationBuilder()
-    .SetBasePath(Directory.GetCurrentDirectory())
-    .AddJsonFile("appsettings.json")
-    .AddJsonFile($"appsettings.{environmentDev}.json")
-    .Build();
+//string environmentDev = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+//var config = new ConfigurationBuilder()
+//    .SetBasePath(Directory.GetCurrentDirectory())
+//    .AddJsonFile("appsettings.json")
+//    .AddJsonFile($"appsettings.{environmentDev}.json")
+//    .Build();
 
-var logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(config)
-    .CreateLogger();
-builder.Services.AddSerilog(logger);
+//var logger = new LoggerConfiguration()
+//    .ReadFrom.Configuration(config)
+//    .CreateLogger();
+//builder.Services.AddSerilog(logger);
 
-try
-{
-    Log.Information("API iniciada.");
-}
-catch (Exception ex)
-{
+//try
+//{
+//    Log.Information("API iniciada.");
+//}
+//catch (Exception ex)
+//{
 
-    Log.Fatal(ex, "Erro Demoníaco.");
-    throw;
-}
-finally
-{
-    Log.CloseAndFlush();
-}
+//    Log.Fatal(ex, "Erro Demoníaco.");
+//    throw;
+//}
+//finally
+//{
+//    Log.CloseAndFlush();
+//}
 
 // Add services to the container.
 
@@ -54,8 +55,8 @@ app.UseExceptionHandler("/error");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
+    app.UseSwaggerConfiguration();
 }
 
 app.UseDatabaseConfiguration();

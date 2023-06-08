@@ -41,11 +41,12 @@ namespace DevClinic.API.Configurations
         public static void UseSwaggerConfiguration(this IApplicationBuilder app)
         {
             app.UseSwagger();
-            app.UseSwaggerUI(s =>
-            {
-                s.RoutePrefix = string.Empty;
-                s.SwaggerEndpoint("./swagger/v1/swagger.json", "CL V1");
-            });
+            app.UseSwaggerUI(//s =>
+            //{
+            //    s.RoutePrefix = string.Empty;
+            //    s.SwaggerEndpoint("./swagger/v1/swagger.json", "DevClinic.API v1");
+            //}
+            );
         }
     }
 }
