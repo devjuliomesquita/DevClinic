@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DevClinic.Data.Maping
 {
-    public class ClientMap : IEntityTypeConfiguration<Client>
+    public class Client_Map : IEntityTypeConfiguration<Client>
     {
         public void Configure(EntityTypeBuilder<Client> builder)
         {

@@ -1,5 +1,7 @@
 ﻿
 
+using DevClinic.Domain.DTO.Addresses;
+
 namespace DevClinic.Domain.DTO.Clients
 {
     /// <summary>
@@ -47,5 +49,6 @@ namespace DevClinic.Domain.DTO.Clients
         /// </summary>
         /// <example>Credenciada</example>
         public string? Plan { get; set; }
+        public CreateAddress_InputModel Address { get; set; }
     }
 }

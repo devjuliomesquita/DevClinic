@@ -11,6 +11,7 @@ namespace DevClinic.Data.Context
         {
         }
         public DbSet<Client> Clients { get; set; }
+        public DbSet<Address> addresses { get; set; }
         public DbSet<Clinic> Clinics { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Speciality> Specialities { get; set; }
@@ -19,7 +20,8 @@ namespace DevClinic.Data.Context
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Client>( new ClientMap().Configure);
+            modelBuilder.Entity<Client>( new Client_Map().Configure);
+            modelBuilder.Entity<Address>( new Address_Map().Configure);
         }
     }
 }
