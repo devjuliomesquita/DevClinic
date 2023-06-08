@@ -1,7 +1,8 @@
-﻿using DevClinic.Manager.Validator.Clients;
+﻿using DevClinic.Manager.Validator.Address;
+using DevClinic.Manager.Validator.Clients;
 using FluentValidation.AspNetCore;
 using System.Globalization;
-using System.Xml.Serialization;
+
 
 namespace DevClinic.API.Configurations
 {
@@ -14,6 +15,7 @@ namespace DevClinic.API.Configurations
                 {
                     f.RegisterValidatorsFromAssemblyContaining<CreateClient_Validator>();
                     f.RegisterValidatorsFromAssemblyContaining<UpdateClient_Validator>();
+                    f.RegisterValidatorsFromAssemblyContaining<CreateAddress_Validator>();
                     f.ValidatorOptions.LanguageManager.Culture = new CultureInfo("pt-BR");
                 }
                 );
