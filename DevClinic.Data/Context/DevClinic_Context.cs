@@ -11,7 +11,7 @@ namespace DevClinic.Data.Context
         {
         }
         public DbSet<Client> Clients { get; set; }
-        public DbSet<Address> addresses { get; set; }
+        public DbSet<Address> Addresses { get; set; }
         public DbSet<Clinic> Clinics { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Speciality> Specialities { get; set; }

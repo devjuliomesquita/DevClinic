@@ -10,7 +10,7 @@ namespace DevClinic.Data.Maping
         public void Configure(EntityTypeBuilder<Address> builder)
         {
             builder.ToTable("tb_Address");
-            builder.HasKey(a => a.UserId);
+            builder.HasKey(a => a.ClientId);
             builder
                 .Property(a => a.CEP)
                 .IsRequired()
@@ -45,9 +45,9 @@ namespace DevClinic.Data.Maping
                 .HasColumnName("State")
                 .HasColumnType("varchar(50)");
             builder
-                .HasOne(a => a.User)
+                .HasOne(a => a.Client)
                 .WithOne(a => a.Address)
-                .HasForeignKey<Address>(a => a.UserId)
+                .HasForeignKey<Address>(a => a.ClientId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }
