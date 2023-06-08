@@ -1,6 +1,7 @@
 ﻿using DevClinic.Manager.Validator.Address;
 using DevClinic.Manager.Validator.Clients;
 using FluentValidation.AspNetCore;
+using Newtonsoft.Json;
 using System.Globalization;
 
 
@@ -11,6 +12,7 @@ namespace DevClinic.API.Configurations
         public static void AddFluentValidationConfiguration(this IServiceCollection services)
         {
             services.AddControllers()
+                .AddNewtonsoftJson(s =>s.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
                 .AddFluentValidation(f =>
                 {
                     f.RegisterValidatorsFromAssemblyContaining<CreateClient_Validator>();

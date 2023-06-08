@@ -37,7 +37,7 @@ namespace DevClinic.Domain.DTO.Clients
         /// <summary>
         /// Data de nascimento do cliente.
         /// </summary>
-        /// <example>1994/11/12</example>
+        /// <example>1994-11-12</example>
         public DateTime BirthDate { get; set; }
         /// <summary>
         /// Código de registro do cliente.

@@ -24,9 +24,9 @@ namespace DevClinic.API.Controllers
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAll() 
         {
-            throw new Exception("Erro de teste");
+            //throw new Exception("Erro de teste");
             return
-                Ok(await _clientService.GetAllAsync());
+                Ok(await _clientService.GetAllClientAsync());
         }
         /// <summary>
         /// Retorna um cliente que é buscado pelo ID.
@@ -39,7 +39,7 @@ namespace DevClinic.API.Controllers
         public async Task<IActionResult> GetById(int id)
         {
             return
-                Ok(await _clientService.GetByIdAsync(id));
+                Ok(await _clientService.GetClientByIdAsync(id));
         }
         /// <summary>
         /// Excluir cliente pelo ID.
