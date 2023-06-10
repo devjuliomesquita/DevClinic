@@ -6,8 +6,6 @@ namespace DevClinic.Domain.Entities
     {
         public string? Name { get; private set; }
         public string? CPF { get; private set; }
-        public string? Email { get; private set; }
-        public string? Phone { get; private set; }
         public char Sexo { get; private set; }
         public bool Active { get; private set; }
         public DateTime BirthDate { get; private set; }

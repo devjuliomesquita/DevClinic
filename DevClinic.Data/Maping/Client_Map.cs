@@ -24,18 +24,6 @@ namespace DevClinic.Data.Maping
                 .HasColumnName("CPF")
                 .HasColumnType("varchar(11)");
             builder
-                .Property(x => x.Email)
-                .IsRequired()
-                .HasConversion(x => x.ToString(), x => x)
-                .HasColumnName("Email")
-                .HasColumnType("varchar(100)");
-            builder
-                .Property(x => x.Phone)
-                .IsRequired()
-                .HasConversion(x => x.ToString(), x => x)
-                .HasColumnName("Phone")
-                .HasColumnType("varchar(11)");
-            builder
                 .Property(x => x.Sexo)
                 .IsRequired()
                 .HasColumnName("Sexo")
