@@ -11,7 +11,7 @@ namespace DevClinic.Manager.Validator.Specialities
             RuleFor(s => s.NameSpeciality)
                 .NotEmpty().WithMessage("Por favor entre com um Nome.")
                 .NotNull().WithMessage("Por favor entre com um Nome.")
-                .MaximumLength(30);
+                .MaximumLength(50);
             RuleFor(s => s.DescriptionSpeciality)
                 .NotEmpty().WithMessage("Por favor faça uma descrição da especialidade.")
                 .NotNull().WithMessage("Por favor faça uma descrição da especialidade.")

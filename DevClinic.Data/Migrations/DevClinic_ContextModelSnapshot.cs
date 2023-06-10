@@ -211,7 +211,7 @@ namespace DevClinic.Data.Migrations
 
                     b.Property<string>("NameSpeciality")
                         .IsRequired()
-                        .HasColumnType("varchar(20)")
+                        .HasColumnType("varchar(50)")
                         .HasColumnName("Name");
 
                     b.HasKey("Id");

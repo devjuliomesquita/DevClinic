@@ -19,7 +19,7 @@ namespace DevClinic.Data.Maping
                 .Property(d => d.NameSpeciality)
                 .IsRequired()
                 .HasColumnName("Name")
-                .HasColumnType("varchar(20)");
+                .HasColumnType("varchar(50)");
             builder
                 .Property(d => d.DescriptionSpeciality)
                 .IsRequired()

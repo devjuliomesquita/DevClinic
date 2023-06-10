@@ -15,8 +15,9 @@ namespace DevClinic.Data.Repository
 
         public async Task<Doctor> CreateDoctorAsync(Doctor doctor)
         {
+            //await CreateDoctorSpecialiaty(doctor);
             await _context.Doctors.AddAsync(doctor);
-            await CreateDoctorSpecialiaty(doctor);
+            
             await _context.SaveChangesAsync();
             return doctor; 
         }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevClinic.Data.Migrations
 {
     [DbContext(typeof(DevClinic_Context))]
-    [Migration("20230610044422_AddList_Email_Phone")]
-    partial class AddList_Email_Phone
+    [Migration("20230610203506_Initial_Migration")]
+    partial class Initial_Migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -168,27 +168,34 @@ namespace DevClinic.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CPF")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(11)")
+                        .HasColumnName("CPF");
+
+                    b.Property<string>("CRM")
+                        .IsRequired()
+                        .HasColumnType("varchar(13)")
+                        .HasColumnName("CRM");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Register")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("Name");
 
                     b.Property<string>("Sexo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(1)");
+                        .HasColumnType("varchar(1)")
+                        .HasColumnName("Sexo");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Doctors");
+                    b.ToTable("tb_Doctors", (string)null);
                 });
 
             modelBuilder.Entity("DevClinic.Domain.Entities.Speciality", b =>
@@ -199,12 +206,34 @@ namespace DevClinic.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("DescriptionSpeciality")
+                        .IsRequired()
+                        .HasColumnType("varchar(300)")
+                        .HasColumnName("Description");
+
                     b.Property<string>("NameSpeciality")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("Name");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Specialities");
+                    b.ToTable("tb_Specialities", (string)null);
+                });
+
+            modelBuilder.Entity("DoctorSpeciality", b =>
+                {
+                    b.Property<int>("DoctorsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SpecialitiesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("DoctorsId", "SpecialitiesId");
+
+                    b.HasIndex("SpecialitiesId");
+
+                    b.ToTable("DoctorSpeciality");
                 });
 
             modelBuilder.Entity("DevClinic.Domain.Entities.Address", b =>
@@ -238,6 +267,21 @@ namespace DevClinic.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Client");
+                });
+
+            modelBuilder.Entity("DoctorSpeciality", b =>
+                {
+                    b.HasOne("DevClinic.Domain.Entities.Doctor", null)
+                        .WithMany()
+                        .HasForeignKey("DoctorsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DevClinic.Domain.Entities.Speciality", null)
+                        .WithMany()
+                        .HasForeignKey("SpecialitiesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DevClinic.Domain.Entities.Client", b =>
