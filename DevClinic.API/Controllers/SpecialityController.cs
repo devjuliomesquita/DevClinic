@@ -19,7 +19,7 @@ namespace DevClinic.API.Controllers
         /// Retorna uma lista de especialidades.
         /// </summary>
         [HttpGet]
-        [ProducesResponseType(typeof(Speciality), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Speciality_ViewModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAll()
         {
@@ -31,7 +31,7 @@ namespace DevClinic.API.Controllers
         /// </summary>
         /// <param name="id" example="2">Id da especialidade.</param>
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(Speciality), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Speciality_ViewModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetById(int id) 
@@ -44,7 +44,7 @@ namespace DevClinic.API.Controllers
         /// </summary>
         /// <param name="id" example="2">Id da especialidade.</param>
         [HttpDelete("{id}")]
-        [ProducesResponseType(typeof(Speciality), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Speciality_ViewModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(int id)
@@ -58,7 +58,7 @@ namespace DevClinic.API.Controllers
         /// </summary>
         /// <param name="inputModel"></param>
         [HttpPost]
-        [ProducesResponseType(typeof(Speciality), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(Speciality_ViewModel), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Create(CreateSpeciality_InputModel inputModel)
         {
@@ -71,7 +71,7 @@ namespace DevClinic.API.Controllers
         /// </summary>
         /// <param name="inputModel"></param>
         [HttpPut]
-        [ProducesResponseType(typeof(Speciality), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Speciality_ViewModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Update(UpdateSpeciality_InputModel inputModel)
