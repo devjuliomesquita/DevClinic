@@ -4,6 +4,7 @@ using DevClinic.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevClinic.Data.Migrations
 {
     [DbContext(typeof(DevClinic_Context))]
-    partial class DevClinic_ContextModelSnapshot : ModelSnapshot
+    [Migration("20230610164538_Add_Doctor_Speciality")]
+    partial class Add_Doctor_Speciality
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
