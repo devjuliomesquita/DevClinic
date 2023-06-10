@@ -26,6 +26,8 @@ namespace DevClinic.Data.Context
             modelBuilder.Entity<Address>( new Address_Map().Configure);
             modelBuilder.Entity<ContactEmail>( new ContactEmail_Map().Configure);
             modelBuilder.Entity<ContactPhone>(new ContactPhone_Map().Configure);
+            modelBuilder.Entity<Doctor>(new Doctor_Map().Configure);
+            modelBuilder.Entity<Speciality>(new Speciality_Map().Configure);
         }
     }
 }
