@@ -6,7 +6,7 @@ namespace DevClinic.Domain.Entities
     {
         public string? NameSpeciality { get; private set; }
         public string? DescriptionSpeciality { get;  private set; }
-        public ICollection<Doctor> Doctors { get; set; }
+        public ICollection<Doctor>? Doctors { get; set; }
 
     }
 }
