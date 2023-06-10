@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DevClinic.Domain.DTO.Addresses;
 using DevClinic.Domain.DTO.Clients;
+using DevClinic.Domain.DTO.Contacts;
 using DevClinic.Domain.Entities;
 
 namespace DevClinic.Manager.Mappings.Clients
@@ -14,6 +15,8 @@ namespace DevClinic.Manager.Mappings.Clients
                 .ForMember(c => c.Active, c => c.MapFrom(c => true))
                 .ForMember(c => c.BirthDate, c => c.MapFrom(c => c.BirthDate.Date));
             CreateMap<CreateAddress_InputModel, Address>();
+            CreateMap<CreateEmail_InputModel, ContactEmail>();
+            CreateMap<CreatePhone_InputModel, ContactPhone>();
 
         }
         //private string Token()

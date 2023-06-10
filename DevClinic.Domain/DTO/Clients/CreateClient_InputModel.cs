@@ -1,6 +1,7 @@
 ﻿
 
 using DevClinic.Domain.DTO.Addresses;
+using DevClinic.Domain.DTO.Contacts;
 
 namespace DevClinic.Domain.DTO.Clients
 {
@@ -19,16 +20,8 @@ namespace DevClinic.Domain.DTO.Clients
         /// </summary>
         /// <example>12345678945</example>
         public string? CPF { get; set; }
-        /// <summary>
-        /// E-mail do cliente.
-        /// </summary>
-        /// <example>juliocesarmcamilo@gmail.com</example>
-        public string? Email { get; set; }
-        /// <summary>
-        /// Telefone do cliente.
-        /// </summary>
-        /// <example>999886020</example>
-        public string? Phone { get; set; }
+        public CreateEmail_InputModel? Emails { get; set; }
+        public CreatePhone_InputModel? Phones { get; set; }
         /// <summary>
         /// Sexo do cliente.
         /// </summary>

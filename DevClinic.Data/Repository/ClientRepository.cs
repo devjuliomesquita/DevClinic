@@ -16,13 +16,21 @@ namespace DevClinic.Data.Repository
         public async Task<IEnumerable<Client>> GetAllClientsAsync()
         {
             return
-                await _context.Clients.Include(c => c.Address).AsNoTracking().ToListAsync();
+                await _context.Clients
+                .Include(c => c.Address)
+                .Include(c => c.ContactPhones)
+                .Include(c => c.ContactEmails)
+                .AsNoTracking().ToListAsync();
         }
 
         public async Task<Client> GetClientByIdAsync(int id)
         {
             return
-                await _context.Clients.Include(c => c.Address).SingleOrDefaultAsync(c => c.Id == id);
+                await _context.Clients
+                .Include(c => c.Address)
+                .Include(c => c.ContactPhones)
+                .Include(c => c.ContactEmails)
+                .SingleOrDefaultAsync(c => c.Id == id);
         }
     }
 }

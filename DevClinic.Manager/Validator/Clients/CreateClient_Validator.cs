@@ -18,16 +18,6 @@ namespace DevClinic.Manager.Validator.Clients
                 .NotEmpty().WithMessage("Por favor entre com um CPF.")
                 .NotNull().WithMessage("Por favor entre com um CPF.")
                 .MaximumLength(11).WithMessage("Título pode conter no máximo 11 caracteres.");
-            RuleFor(jv => jv.Email)
-                .NotEmpty().WithMessage("Por favor entre com um E-mail.")
-                .NotNull().WithMessage("Por favor entre com um E-mail.")
-                .MaximumLength(100).WithMessage("Título pode conter no máximo 100 caracteres.")
-                .EmailAddress();
-            RuleFor(jv => jv.Phone)
-                .NotEmpty().WithMessage("Por favor entre com um Telefone.")
-                .NotNull().WithMessage("Por favor entre com um Telefone.")
-                .MaximumLength(11).WithMessage("Título pode conter no máximo 11 caracteres.")
-                .MinimumLength(8).WithMessage("Título deve conter no mínimo 8 caractes.");
             RuleFor(jv => jv.Sexo)
                 .NotEmpty().WithMessage("Por favor entre com a letra F ou M.")
                 .NotNull().WithMessage("Por favor entre com a letra F ou M.")
