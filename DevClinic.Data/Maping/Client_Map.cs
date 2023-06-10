@@ -40,8 +40,18 @@ namespace DevClinic.Data.Maping
                 .HasConversion(x => x.ToString(), x => x)
                 .HasColumnName("Plan")
                 .HasColumnType("varchar(20)");
+            builder
+                .HasMany(c => c.ContactPhones)
+                .WithOne(c => c.Client)
+                .HasForeignKey(c => c.ClientId)
+                .OnDelete(DeleteBehavior.Cascade);
+            builder
+                .HasMany(c => c.ContactEmails)
+                .WithOne(c => c.Client)
+                .HasForeignKey(c => c.ClientId)
+                .OnDelete(DeleteBehavior.Cascade);
 
-            
+
         }
     }
 }
