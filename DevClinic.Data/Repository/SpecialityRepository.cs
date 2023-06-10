@@ -13,7 +13,7 @@ namespace DevClinic.Data.Repository
             _context = context;
         }
 
-        public async Task<Speciality> GetSpecialityById(int id)
+        public async Task<Speciality> GetSpecialityByIdAsync(int id)
         {
             return
                 await _context.Specialities.Include(s => s.Doctors).AsNoTracking().SingleOrDefaultAsync(s => s.Id == id);

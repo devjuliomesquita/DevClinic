@@ -6,6 +6,6 @@ namespace DevClinic.Manager.Interfaces.Services
 {
     public interface ISpecialityService : IServiceBase<Speciality>
     {
-        Task<SpecialityDetails_ViewModel> GetSpecialityById(int id);
+        Task<SpecialityDetails_ViewModel> GetSpecialityByIdAsync(int id);
     }
 }

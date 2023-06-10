@@ -18,10 +18,10 @@ namespace DevClinic.Manager.Implementation
             _repository = repository;
         }
 
-        public async Task<SpecialityDetails_ViewModel> GetSpecialityById(int id)
+        public async Task<SpecialityDetails_ViewModel> GetSpecialityByIdAsync(int id)
         {
             return
-                _mapper.Map<SpecialityDetails_ViewModel>(await _repository.GetSpecialityById(id));
+                _mapper.Map<SpecialityDetails_ViewModel>(await _repository.GetSpecialityByIdAsync(id));
         }
     }
 }
