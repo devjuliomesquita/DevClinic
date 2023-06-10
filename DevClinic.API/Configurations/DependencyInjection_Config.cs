@@ -11,6 +11,8 @@ namespace DevClinic.API.Configurations
         {
             services.AddScoped(typeof(IRepositoryBase<>), typeof(Repositorybase<>));
             services.AddScoped<IClientRepository, ClientRepository>();
+            services.AddScoped<IDoctorRepository, DoctorRepository>();
+            services.AddScoped<ISpecialityRepository, SpecialityRepository>();
 
             services.AddScoped(typeof(IServiceBase<>), typeof(ServiceBase<>));
             services.AddScoped<IClientService, ClientService>();

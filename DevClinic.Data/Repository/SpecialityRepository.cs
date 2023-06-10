@@ -1,11 +1,7 @@
 ﻿using DevClinic.Data.Context;
 using DevClinic.Domain.Entities;
 using DevClinic.Manager.Interfaces.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace DevClinic.Data.Repository
 {
@@ -15,6 +11,12 @@ namespace DevClinic.Data.Repository
         public SpecialityRepository(DevClinic_Context context) : base(context)
         {
             _context = context;
+        }
+
+        public async Task<Speciality> GetSpecialityById(int id)
+        {
+            return
+                await _context.Specialities.Include(s => s.Doctors).AsNoTracking().SingleOrDefaultAsync(s => s.Id == id);
         }
     }
 }
