@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Mappings\Specialities\" />
     <Folder Include="Validator\Doctors\" />
     <Folder Include="Validator\Specialities\" />
   </ItemGroup>
