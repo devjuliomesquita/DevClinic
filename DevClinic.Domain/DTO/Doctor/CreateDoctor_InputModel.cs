@@ -6,7 +6,7 @@ using DevClinic.Domain.DTO.Speciality;
 namespace DevClinic.Domain.DTO.Doctor
 {
     /// <summary>
-    /// Objeto complexo par aa criação de um novo médico
+    /// Objeto complexo para a criação de um novo médico
     /// </summary>
     public class CreateDoctor_InputModel
     {
