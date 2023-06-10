@@ -3,11 +3,7 @@ using DevClinic.Domain.DTO.Doctor;
 using DevClinic.Domain.Entities;
 using DevClinic.Manager.Interfaces.Repository;
 using DevClinic.Manager.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DevClinic.Manager.Implementation
 {
