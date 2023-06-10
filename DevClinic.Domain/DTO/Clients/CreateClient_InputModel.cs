@@ -20,8 +20,8 @@ namespace DevClinic.Domain.DTO.Clients
         /// </summary>
         /// <example>12345678945</example>
         public string? CPF { get; set; }
-        public CreateEmail_InputModel? Emails { get; set; }
-        public CreatePhone_InputModel? Phones { get; set; }
+        public ICollection<CreateEmail_InputModel>? ContactEmails { get; set; }
+        public ICollection<CreatePhone_InputModel>? ContactPhones { get; set; }
         /// <summary>
         /// Sexo do cliente.
         /// </summary>

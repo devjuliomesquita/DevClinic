@@ -2,7 +2,6 @@
 
 using DevClinic.Domain.DTO.Clients;
 using DevClinic.Manager.Validator.Address;
-using DevClinic.Manager.Validator.Contacts;
 using FluentValidation;
 
 namespace DevClinic.Manager.Validator.Clients
@@ -38,8 +37,8 @@ namespace DevClinic.Manager.Validator.Clients
                 .NotNull().WithMessage("Por favor entre com o seu plano.")
                 .MaximumLength(20).WithMessage("Título pode conter no máximo 20 caracteres.")
                 .MinimumLength(3).WithMessage("Título deve conter no mínimo 3 caractes.");
-            RuleFor(jv => jv.Phones).SetValidator(new CreatePhone_Validator());
-            RuleFor(jv => jv.Emails).SetValidator(new CreateEmail_Validator());
+            RuleFor(jv => jv.ContactEmails).NotEmpty().NotNull();
+            RuleFor(jv => jv.ContactPhones).NotEmpty().NotNull();
             RuleFor(jv => jv.Address).SetValidator(new CreateAddress_Validator());
 
         }
