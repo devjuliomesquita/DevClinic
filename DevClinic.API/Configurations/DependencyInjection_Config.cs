@@ -16,6 +16,8 @@ namespace DevClinic.API.Configurations
 
             services.AddScoped(typeof(IServiceBase<>), typeof(ServiceBase<>));
             services.AddScoped<IClientService, ClientService>();
+            services.AddScoped<IDoctorService, DoctorService>();
+            services.AddScoped<ISpecialityService, SpecialityService>();
         }
     }
 }

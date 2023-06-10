@@ -1,13 +1,16 @@
-﻿using DevClinic.Domain.Entities;
+﻿using DevClinic.Domain.DTO.Doctor;
+using DevClinic.Domain.Entities;
 
 
 namespace DevClinic.Manager.Interfaces.Services
 {
     public interface IDoctorService : IServiceBase<Doctor>
     {
-        Task<Doctor> AddDoctorAsync<TInputModel>(TInputModel inputModel) where TInputModel : class;
-        Task<Doctor> UpdateDoctorAsync<TInputModel>(TInputModel inputModel) where TInputModel : class;
-        Task<IEnumerable<Doctor>> GetAllDoctorsAsync();
-        Task<Doctor> GeDoctortByIdAsync(int id);
+        Task<Doctor_ViewModel> AddDoctorAsync<CreateDoctor_InputModel>(CreateDoctor_InputModel inputModel) 
+            where CreateDoctor_InputModel : class;
+        Task<Doctor_ViewModel> UpdateDoctorAsync<UpdateDoctor_InputModel>(UpdateDoctor_InputModel inputModel) 
+            where UpdateDoctor_InputModel : class;
+        Task<IEnumerable<Doctor_ViewModel>> GetAllDoctorsAsync();
+        Task<Doctor_ViewModel> GetDoctortByIdAsync(int id);
     }
 }
