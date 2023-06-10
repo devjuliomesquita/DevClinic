@@ -15,4 +15,10 @@
     <ProjectReference Include="..\DevClinic.Domain\DevClinic.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Mappings\Specialities\" />
+    <Folder Include="Validator\Doctors\" />
+    <Folder Include="Validator\Specialities\" />
+  </ItemGroup>
+
 </Project>
