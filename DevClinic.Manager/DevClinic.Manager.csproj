@@ -15,8 +15,4 @@
     <ProjectReference Include="..\DevClinic.Domain\DevClinic.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Validator\Specialities\" />
-  </ItemGroup>
-
 </Project>
