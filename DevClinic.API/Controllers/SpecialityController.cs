@@ -19,7 +19,7 @@ namespace DevClinic.API.Controllers
         /// Retorna uma lista de especialidades.
         /// </summary>
         [HttpGet]
-        [ProducesResponseType(typeof(Speciality_ViewModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<Speciality_ViewModel>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAll()
         {
@@ -31,7 +31,7 @@ namespace DevClinic.API.Controllers
         /// </summary>
         /// <param name="id" example="2">Id da especialidade.</param>
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(Speciality_ViewModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(SpecialityDetails_ViewModel), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetById(int id) 
