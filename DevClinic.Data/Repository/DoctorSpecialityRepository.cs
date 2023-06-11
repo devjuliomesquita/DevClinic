@@ -19,17 +19,26 @@ namespace DevClinic.Data.Repository
             return entity;
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(DoctorSpeciality entity)
         {
-            throw new NotImplementedException();
+            _context.DoctorsSpecialities.Remove(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<DoctorSpeciality> GetSpecialityDoctorAsync(DoctorSpeciality doctorSpeciality)
         {
-            return
-                await _context.DoctorsSpecialities
-                    .Where(ds => ds.DoctorId == doctorSpeciality.DoctorId && ds.SpecialityId == doctorSpeciality.SpecialityId)
-                    .FirstOrDefaultAsync();
+            var doctorId = await _context.Doctors.SingleOrDefaultAsync(c => c.Id == doctorSpeciality.DoctorId);
+            var specialityId = await _context.Specialities.SingleOrDefaultAsync(c => c.Id == doctorSpeciality.SpecialityId);
+            if(doctorId == null || specialityId == null)
+            {
+                return doctorSpeciality;
+            }
+            else
+            {
+                return await _context.DoctorsSpecialities
+                                        .Where(ds => ds.DoctorId == doctorSpeciality.DoctorId && ds.SpecialityId == doctorSpeciality.SpecialityId)
+                                        .FirstOrDefaultAsync();
+            }
         }
     }
 }

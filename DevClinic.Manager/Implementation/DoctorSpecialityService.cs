@@ -20,22 +20,21 @@ namespace DevClinic.Manager.Implementation
         public async Task<DoctorSpeciality> AddSpecDoctorAsync<CreateSpecialityDoctor_InputModel>(CreateSpecialityDoctor_InputModel inputModel) 
             where CreateSpecialityDoctor_InputModel : class
         {
-            //Mapear os dados
             var entity = _mapper.Map<DoctorSpeciality>(inputModel);
-            //consultar id para saber se esse relacionameto já existe
             var doctorSpec = await _doctorSpecRepository.GetSpecialityDoctorAsync(entity);
-            //relacionamento não existindo -> adicionadar a base.
-            if (doctorSpec == null)
-            {
-                _doctorSpecRepository.AddAsync(entity);
-            }
-            return
-                entity;
+            if (doctorSpec != null) return null;
+            await _doctorSpecRepository.AddAsync(entity);
+            return entity;
         }
 
-        public Task DeleteSpecDoctorAsync(int id)
+        public async Task DeleteSpecDoctorAsync(CreateSpecialityDoctor_InputModel inputModel)
         {
-            throw new NotImplementedException();
+            var entity = _mapper.Map<DoctorSpeciality>(inputModel);
+            var doctorSpec = await _doctorSpecRepository.GetSpecialityDoctorAsync(entity);
+            if (doctorSpec != null)
+            {
+                await _doctorSpecRepository.DeleteAsync(doctorSpec);
+            }
         }
 
         

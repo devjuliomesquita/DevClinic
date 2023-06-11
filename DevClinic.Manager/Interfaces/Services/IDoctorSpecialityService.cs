@@ -8,6 +8,6 @@ namespace DevClinic.Manager.Interfaces.Services
     {
         Task<DoctorSpeciality> AddSpecDoctorAsync<CreateSpecialityDoctor_InputModel>(CreateSpecialityDoctor_InputModel inputModel)
             where CreateSpecialityDoctor_InputModel : class;
-        Task DeleteSpecDoctorAsync(int id);
+        Task DeleteSpecDoctorAsync(CreateSpecialityDoctor_InputModel inputModel);
     }
 }

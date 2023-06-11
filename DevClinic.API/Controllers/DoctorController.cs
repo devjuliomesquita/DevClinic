@@ -56,6 +56,13 @@ namespace DevClinic.API.Controllers
             return
                 NoContent();
         }
+        [HttpDelete("/remove-Speciality")]
+        public async Task<IActionResult> RemoveSpecialityDoctor(CreateSpecialityDoctor_InputModel inputModel)
+        {
+            await _doctorSpecService.DeleteSpecDoctorAsync(inputModel);
+            return
+                NoContent();
+        }
         /// <summary>
         /// Inserir um novo médico
         /// </summary>
@@ -79,6 +86,10 @@ namespace DevClinic.API.Controllers
         public async Task<IActionResult> AddSpecialityDoctor(CreateSpecialityDoctor_InputModel inputModel)
         {
             var doctorSpec = await _doctorSpecService.AddSpecDoctorAsync(inputModel);
+            if (doctorSpec.DoctorId == null || doctorSpec.SpecialityId == null)
+            {
+                return BadRequest("Erro ao realizar o cadastro.");
+            }
             return
                 Ok(await _doctorService.GetDoctortByIdAsync(doctorSpec.DoctorId));
             
