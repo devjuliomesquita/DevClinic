@@ -32,7 +32,6 @@ namespace DevClinic.Manager.Validator.Doctors
                 .NotNull().WithMessage("Por favor entre com o CRM do Médico.")
                 .MaximumLength(13).WithMessage("CRM pode conter no máximo 13 caracteres.")
                 .MinimumLength(12).WithMessage("CRM deve conter no mínimo 12 caractes caso esteja sem o espaço.");
-            RuleFor(jv => jv.Specialities).NotEmpty().NotNull();
         }
         private bool IsMorF(char sexo)
         {

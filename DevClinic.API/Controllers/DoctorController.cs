@@ -1,6 +1,7 @@
 ﻿using DevClinic.Domain.DTO.Doctor;
 using DevClinic.Domain.DTO.Error;
 using DevClinic.Manager.Interfaces.Services;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,9 +12,11 @@ namespace DevClinic.API.Controllers
     public class DoctorController : ControllerBase
     {
         private readonly IDoctorService _doctorService;
-        public DoctorController(IDoctorService doctorService)
+        private readonly IDoctorSpecialityService _doctorSpecService;
+        public DoctorController(IDoctorService doctorService, IDoctorSpecialityService doctorSpecService)
         {
             _doctorService = doctorService;
+            _doctorSpecService = doctorSpecService;
         }
         /// <summary>
         /// Retorna uma lista de médicos;
@@ -62,9 +65,23 @@ namespace DevClinic.API.Controllers
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Create(CreateDoctor_InputModel inputModel)
         {
-            var doctorNew = await _doctorService.AddDoctorAsync(inputModel);
+            var doctorNew = await _doctorService.AddAsync(inputModel);
             return
                 CreatedAtAction(nameof(GetById), new {Id = doctorNew.Id}, doctorNew);
+        }
+        /// <summary>
+        /// Adicionar uma espcialidade no médico.
+        /// </summary>
+        /// <param name="inputModel"></param>
+        [HttpPost("/add-Speciality")]
+        [ProducesResponseType(typeof(Doctor_ViewModel), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> AddSpecialityDoctor(CreateSpecialityDoctor_InputModel inputModel)
+        {
+            var doctorSpec = await _doctorSpecService.AddSpecDoctorAsync(inputModel);
+            return
+                Ok(await _doctorService.GetDoctortByIdAsync(doctorSpec.DoctorId));
+            
         }
         /// <summary>
         /// Atualizar um médico.
@@ -76,7 +93,7 @@ namespace DevClinic.API.Controllers
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Update(UpdateDoctor_InputModel inputModel)
         {
-            var updateDoctor = await _doctorService.UpdateDoctorAsync(inputModel);
+            var updateDoctor = await _doctorService.UpdateAsync(inputModel);
             if (updateDoctor == null) { return NotFound(); }
             return
                 Ok(updateDoctor);

@@ -14,6 +14,7 @@ namespace DevClinic.Manager.Mappings.Doctors
                 .ForMember(d =>d.CreatedAt, d =>d.MapFrom(d => DateTime.Now))
                 .ForMember(d =>d.Active, d =>d.MapFrom(d => true))
                 .ForMember(d =>d.BirthDate, d =>d.MapFrom(d => d.BirthDate.Date));
+            CreateMap<CreateSpecialityDoctor_InputModel, DoctorSpeciality>();
         }
     }
 }

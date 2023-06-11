@@ -8,5 +8,6 @@ namespace DevClinic.Manager.Interfaces.Repository
         Task<IEnumerable<Doctor>> GetAllDoctorsAsync();
         Task<Doctor> CreateDoctorAsync(Doctor doctor);
         Task<Doctor> UpdateDoctorAync(Doctor doctor);
+        Task<DoctorSpeciality> GetSpecialityDoctor(DoctorSpeciality doctorSpeciality);
     }
 }

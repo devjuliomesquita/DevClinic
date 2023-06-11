@@ -35,6 +35,6 @@ namespace DevClinic.Domain.DTO.Doctor
         /// </summary>
         /// <example>CRM/CE 123456</example>
         public string? CRM { get; set; }
-        public ICollection<ReferenceSpeciality>? Specialities { get; set; }
+        //public ICollection<ReferenceSpeciality>? Specialities { get; set; }
     }
 }

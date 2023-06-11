@@ -44,5 +44,7 @@ namespace DevClinic.Manager.Implementation
             return
                 _mapper.Map<Doctor_ViewModel>(await _repository.UpdateDoctorAync(doctor));
         }
+
+        
     }
 }

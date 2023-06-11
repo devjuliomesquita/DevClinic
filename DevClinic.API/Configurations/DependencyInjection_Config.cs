@@ -13,11 +13,13 @@ namespace DevClinic.API.Configurations
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IDoctorRepository, DoctorRepository>();
             services.AddScoped<ISpecialityRepository, SpecialityRepository>();
+            services.AddTransient<IDoctorSpecialityRepository, DoctorSpecialityRepository>();
 
             services.AddScoped(typeof(IServiceBase<>), typeof(ServiceBase<>));
             services.AddScoped<IClientService, ClientService>();
             services.AddScoped<IDoctorService, DoctorService>();
             services.AddScoped<ISpecialityService, SpecialityService>();
+            services.AddTransient<IDoctorSpecialityService, DoctorSpecialityService>();
         }
     }
 }

@@ -34,6 +34,14 @@ namespace DevClinic.Data.Repository
                 await _context.Doctors.Include(d => d.Specialities).AsNoTracking().SingleOrDefaultAsync(d => d.Id == id);
         }
 
+        public async Task<DoctorSpeciality> GetSpecialityDoctor(DoctorSpeciality doctorSpeciality)
+        {
+            return
+                await _context.DoctorsSpecialities
+                    .Where(ds => ds.DoctorId == doctorSpeciality.DoctorId && ds.SpecialityId == doctorSpeciality.SpecialityId)
+                    .FirstOrDefaultAsync();
+        }
+
         public async Task<Doctor> UpdateDoctorAync(Doctor doctor)
         {
             var queryDoctor = await _context.Doctors.Include(d => d.Specialities).SingleOrDefaultAsync(d => d.Id == doctor.Id);
